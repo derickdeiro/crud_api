@@ -12,3 +12,14 @@ class Fornecedor(Base):
     telefone = Column(String(20))
     email = Column(String(50))
     endereco = Column(String(100))
+    
+class Produto(Base):
+    __tablename__ = 'produtos'
+    id = Column(Integer, primary_key=True)
+    nome = Column(String(50), nullable=False)
+    descricao = Column(String(200))
+    preco = Column(Integer)
+    fornecedor_id = Column(Integer, ForeignKey('fornecedores.id'))
+    
+    # Estabelece a relação entre Produto e Fornecedor
+    fornecedor = relationship("Fornecedor")
